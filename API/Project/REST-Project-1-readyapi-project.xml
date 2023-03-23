@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="c328a40c-b1fc-4d72-88ad-4069be9e0e3f" created="3.44.1" activeEnvironment="Default environment" name="REST Project 1" projectVersion="" updated="3.44.1 2023-03-15T15:35:59Z" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="c328a40c-b1fc-4d72-88ad-4069be9e0e3f" created="3.44.1" activeEnvironment="Default environment" name="REST Project 1" projectVersion="" updated="3.44.1 2023-03-15T15:35:59Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:interface xsi:type="con:RestService" id="6e1c4e54-18bc-4e08-abf5-2738a8796852" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://api.github.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <con:settings/>
@@ -19,9 +19,19 @@
           <con:params/>
           <con:element>Response</con:element>
         </con:representation>
+        <con:representation type="FAULT">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>401</con:status>
+          <con:params/>
+          <con:element xmlns:ema="https://api.github.com/user/emails">ema:Fault</con:element>
+        </con:representation>
         <con:request name="Request 1" id="8b3cf1c8-b507-44ec-a80a-4014919f6bd0" mediaType="application/json">
           <con:settings/>
           <con:endpoint>https://api.github.com</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -51,6 +61,10 @@
         <con:request name="Request 1" id="d296c64e-880c-4ba9-abe6-53844c547508" mediaType="application/json">
           <con:settings/>
           <con:endpoint>https://api.github.com</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
           <con:parameters/>
         </con:request>
       </con:method>
@@ -89,6 +103,10 @@
         <con:request name="Request 1" id="4ca09abb-1844-4090-b7c5-02c855c149b7" mediaType="application/json">
           <con:settings/>
           <con:endpoint>https://api.github.com</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
           <con:parameters>
             <con:entry key="keyId" value="keyId"/>
           </con:parameters>
@@ -103,7 +121,15 @@
     <con:settings/>
     <con:runType>SEQUENTIAL</con:runType>
     <con:testCase id="dfd0c1c5-25cd-41b0-9752-e67ffd25f316" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Test Case" searchProperties="true" timeout="0">
-      <con:settings/>
+      <con:settings>
+        <con:setting id="IncludeOverview">true</con:setting>
+        <con:setting id="IncludeResults">true</con:setting>
+        <con:setting id="FlowLayout">false</con:setting>
+        <con:setting id="ErrorDetails">true</con:setting>
+        <con:setting id="IncludeCoverage">true</con:setting>
+        <con:setting id="GeneratableJUnitReport@Style">Multiple Pages</con:setting>
+        <con:setting id="GeneratableJUnitReport@Folder">C:\Users\0049F2744\IdeaProjects\FST_API</con:setting>
+      </con:settings>
       <con:testStep type="restrequest" name="Request 1" id="739a8e6a-fe7f-411e-b9cb-048d09d56088">
         <con:settings/>
         <con:config service="https://api.github.com" resourcePath="/user/emails" methodName="Emails" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -139,13 +165,13 @@
             <con:endpoint>https://api.github.com</con:endpoint>
             <con:request>{
 	"title":"TestKey",
-	"key":"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFCAkp4/QY76Z2FNEaF6kn5rDjuFZmS4pvZd5Cq6bxcH"
+	"key":"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPuMU6W3VtupEl9S97pvLMQBsNAPCCepkfZXVpug1EbT"
 }</con:request>
             <con:originalUri>https://api.github.com/user/keys</con:originalUri>
             <con:assertion type="Valid HTTP Status Codes" id="78dcd05f-00eb-4aab-b62e-a6f561208e6e" name="Valid HTTP Status Codes">
               <con:settings/>
               <con:configuration>
-                <codes>200</codes>
+                <codes>200,201</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -187,7 +213,7 @@
             <con:assertion type="Valid HTTP Status Codes" id="b4971f20-b95c-4132-a703-520e57bb14d3" name="Valid HTTP Status Codes">
               <con:settings/>
               <con:configuration>
-                <codes>200</codes>
+                <codes>200,204</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
@@ -196,7 +222,7 @@
             </con:credentials>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:parameters>
-              <con:entry key="keyId" value="79443948"/>
+              <con:entry key="keyId" value="79548144"/>
             </con:parameters>
             <con:parameterOrder>
               <con:entry>keyId</con:entry>
@@ -218,7 +244,7 @@
     <con:oAuth2Profile>
       <con:name>ApiProfile</con:name>
       <con:type>OAuth 2.0</con:type>
-      <con:accessToken>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</con:accessToken>
+      <con:accessToken>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</con:accessToken>
       <con:accessTokenPosition>HEADER</con:accessTokenPosition>
       <con:accessTokenStatus>ENTERED_MANUALLY</con:accessTokenStatus>
       <con:accessTokenStartingStatus>ENTERED_MANUALLY</con:accessTokenStartingStatus>
@@ -266,7 +292,7 @@
     <con:oAuth20AuthEntry>
       <con:name>ApiProfile</con:name>
       <con:type>OAuth 2.0</con:type>
-      <con:accessToken>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</con:accessToken>
+      <con:accessToken>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</con:accessToken>
       <con:accessTokenPosition>HEADER</con:accessTokenPosition>
       <con:accessTokenStatus>ENTERED_MANUALLY</con:accessTokenStatus>
       <con:accessTokenStartingStatus>ENTERED_MANUALLY</con:accessTokenStartingStatus>
